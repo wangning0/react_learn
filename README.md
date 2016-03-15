@@ -35,4 +35,57 @@
 * 组件(组件类的实例),组件并不是真实的DOM,而是存在于内存之中的数据结构,称为虚拟DOM(Virtual DOM),只有在插入文档之后，才会变成真实的DOM,而且都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上.
 * **获取真实的DOM**需要用到`ref`属性
 
+
+
+			var MyComponent = React.createClass({
+	        handleClick:function(){
+	          console.log(this.refs);
+	          this.refs.textInput.focus()
+	        },
+	        render:function(){
+	          return (
+	            <div>
+	            <input ref="textInput" type="text"/>
+	            <input type="button" onClick={this.handleClick} value="click me" />
+	            </div>
+	            )
+	        },
+	      });
+	
+	      ReactDOM.render(
+	        <MyComponent></MyComponent>,
+	        document.getElementById('example')
+	        )
+	      
+* **`this.state`**
+
+	* getInitialState 用于初始化状态,也是一个对象, 对象可以通过`this.state`来调用
+	* `this.setState`用于修改状态值,并且在每次修改后会自动调用`this.render`方法,再次渲染页面
+	
+* `this.state`和`this.props`的**区别**
+	
+   前者会随用户互动而改变的特性,后者是表示那些一旦定义就不再改变的特性
+
+
+* 事件里面都会有一个`event`对象
+* **`组件的生命周期`**
+
+	* 三个状态
+	
+		* Mounting 已插入真实的DOM
+		* Updating 正在被重新渲染 
+		* Unmounting 已移出真实DOM
+	* 五种处理函数   `will`表示进入状态之前调用 `did`表示进入状态之后调用
+	
+		* componentWillMount()
+		* componentDidMount()
+		* componentWillUpdate(object nextProps,object nextState)
+		* componentDidUpdate(object prevProps,object prevState)
+		* componentWIllUnmount()
+		
+	* 两个特殊的处理函数
+		
+		* componentWillReceiveProps(object nextProps) 已加载组件收到新的参数时调用
+		* shouldComponentUpdate(object nextProps,object prevProps)组件判断是否重新渲染时调用
+	* 组件的`style`属性的设置方式，要写成`style={{opacity:this.state.opacity}}`
 	
