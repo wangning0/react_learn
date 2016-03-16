@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Refs</title>
+	<script src="./build/react.js"></script>
+	<script src="./build/react-dom.js"></script>
+	<script src="./build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+	<script type="text/babel">
+	var  MyComponent = React.createClass({
+		handleClick:function(){
+			this.refs.MyInputText.focus();
+		},
+		render:function(){
+			return (
+				<div>
+				<input type="text" ref="MyInputText" />
+				<p onClick={this.handleClick}>click me</p>
+				</div>
+				)
+		}
+	})
+	ReactDOM.render(
+		<MyComponent/>,
+		document.getElementById('example')
+		)
+	</script>
+</body>
+</html>

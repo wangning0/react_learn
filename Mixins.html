@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Mixins</title>
+	<script src="./build/react.js"></script>
+	<script src="./build/react-dom.js"></script>
+	<script src="./build/browser.min.js"></script>
+</head>
+<body>
+	<div id="example"></div>
+	<script type="text/babel">
+	var LoginMixin = {
+		componentWillMount:function(){
+			console.log('hello!');
+		}
+	};
+	var MyComponent = React.createClass({
+		mixins:[LoginMixin],
+		componentWillMount:function(){
+			console.log('world');
+		},
+		render:function(){
+			return (<div>React!</div>)
+		}
+	});
+
+	ReactDOM.render(
+		<MyComponent/>,
+		document.getElementById('example')
+		)
+
+	</script>
+</body>
+</html>
